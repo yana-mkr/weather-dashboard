@@ -1,5 +1,5 @@
-var searchInput = ("#search-input").value
-var searchButton =("#search-button");
+var searchInput = document.getElementById("search-input")
+var searchButton = document.getElementById("search-button")
 
 var todaysWeather = function (location) {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c"
@@ -37,15 +37,16 @@ var getForecast = function(location) {
     })
 }
 
-var submitLocation = function(searchInput) {
-    event.preventDefault();
-    searchButton.eventListener("click", todaysWeather, getForecast)
-    console.log(searchInput)
-}
+
+searchButton.addEventListener("click", function(event){
+  
+  todaysWeather(searchInput.value) 
+  getForecast(searchInput.value)
+
+})
+    
 //todaysWeather("salt lake city");
 //getForecast("salt lake city");
-
-// in my onclick call both function with the city name
 
 // function to display the uv index
 
