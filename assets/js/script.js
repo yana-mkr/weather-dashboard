@@ -5,6 +5,7 @@ var cityToday = document.querySelector("#city-today")
 var todayStats = document.querySelector("#today-stats")
 var uvIndex = document.querySelector("#uv-index")
 
+
 var todaysWeather = function (location) {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c"
 
@@ -20,7 +21,7 @@ var todaysWeather = function (location) {
 }
 
 var getForecast = function(location) {
-    var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c"
+    var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c&units=imperial"
 
     fetch(apiURL)
     .then(function(response) {
@@ -28,11 +29,11 @@ var getForecast = function(location) {
             console.log(response);
             response.json().then(function(data) {
                 for (var i = 0; i < 5; i++) {
-                    forecastCards.innerHTML += "<div>" + data.list[0].dt_txt + "</div>"
-                    forecastCards.innerHTML += "<img src='http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png'" + "/>"
-                    forecastCards.innerHTML += "<div>Temperature: " + data.list[0].main.temp + "</div>"
-                    forecastCards.innerHTML += "<div>Wind " + data.list[0].wind.speed + "MPH</div>"
-                    forecastCards.innerHTML += "<div>Humidity " + data.list[0].main.humidity + "%</div>"
+                    forecastCards.innerHTML += "<div>" + data.list[i].dt_txt + "</div>"
+                    forecastCards.innerHTML += "<img src='http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
+                    forecastCards.innerHTML += "<div>Temperature: " + data.list[i].main.temp + "</div>"
+                    forecastCards.innerHTML += "<div>Wind " + data.list[i].wind.speed + "MPH</div>"
+                    forecastCards.innerHTML += "<div>Humidity " + data.list[i].main.humidity + "%</div>"
                 }            
                 console.log(data);
             })
