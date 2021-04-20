@@ -29,11 +29,12 @@ var getForecast = function(location) {
             console.log(response);
             response.json().then(function(data) {
                 for (var i = 0; i < 5; i++) {
-                    forecastCards.innerHTML += "<div>" + data.list[i].dt_txt + "</div>"
-                    forecastCards.innerHTML += "<img src='http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
-                    forecastCards.innerHTML += "<div>Temperature: " + data.list[i].main.temp + "</div>"
-                    forecastCards.innerHTML += "<div>Wind " + data.list[i].wind.speed + "MPH</div>"
-                    forecastCards.innerHTML += "<div>Humidity " + data.list[i].main.humidity + "%</div>"
+                     var card="<div class=\"card col\"><div class\"card-title\">" + data.list[i].dt_txt + "</div>"
+                     +"<img src='http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
+                     +"<div>Temperature: " + data.list[i].main.temp + "</div>"
+                     +"<div>Wind " + data.list[i].wind.speed + "MPH</div>"
+                     +"<div>Humidity " + data.list[i].main.humidity + "%</div></div>"
+                     forecastCards.insertAdjacentHTML('beforeend', card)
                 }            
                 console.log(data);
             })
