@@ -17,27 +17,26 @@
 
 <body>
     <main>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="row">
-                    <div class="col-md-3" id="left-side">
-                        <h2>Search for a City:</h2>
-                        <input type="text" id="search-input">
-                        <button id="search-button">Search</button>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3" id="saved-search">Saved Search</div>
-                        <div class="col-md-9" id="right-side">
-                            <div class="col-md-9" id="today">
-                                <h2 id="city-today"></h2>
-                                <div id="temp"></div>
-                                <div id="wind"></div>
-                                <div id="humidity"></div>
-                                <div id="uv-index"></div>
-                            </div>
-                            <div class="row" id="forecast-cards">
-
-                            </div>
+                <div class="col-lg-3" id="left-side">
+                    <h3>Search for a City:</h3>
+                    <input type="text" id="search-input">
+                    <br />
+                    <button id="search-button" class="btn btn-info">Search</button>
+                    <br />
+                    <div class="col-md-3" id="saved-search"></div>
+                </div>
+                <div class="col-md-9">
+                    <div class="col-lg-9" id="right-side">
+                        <div class="col-md-9 text-secondary" id="today">
+                            <h2 id="city-today"></h2>
+                            <div id="temp"></div>
+                            <div id="wind"></div>
+                            <div id="humidity"></div>
+                            <div id="uv-index"></div>
+                        </div>
+                        <div class="row" id="forecast-cards">
                         </div>
                     </div>
                 </div>

@@ -9,12 +9,14 @@ var humidity = document.querySelector("#humidity")
 var uvIndex = document.querySelector("#uv-index")
 var searchedCities = JSON.parse(localStorage.getItem("searched")) || []
 var savedSearch = document.querySelector("#saved-search")
+var today = document.getElementById("today")
 
 var makeList = function (searched) {
     var listItem = document.createElement("li")
     listItem.setAttribute("class", "list-group-item list-group-item-action")
     listItem.textContent = searched
     savedSearch.append(listItem)
+
 }
 
 
@@ -33,13 +35,13 @@ var todaysWeather = function (location) {
                         makeList(searchInput.value);
                     }
 
-                    var h1 = document.createElement("h1")
-                    h1.textContent = searchInput.value + " " + new Date().toLocaleDateString()
+                    var h2 = document.createElement("h2")
+                    h2.textContent = searchInput.value + " " + new Date().toLocaleDateString()
 
-                    cityToday.appendChild(h1);
+                    cityToday.appendChild(h2);
                     var img = document.createElement("img")
                     img.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
-                    h1.appendChild(img)
+                    h2.appendChild(img)
 
                     var pTemp = document.createElement("p")
                     pTemp.textContent = "Temperature: " + data.main.temp + " °F"
@@ -55,13 +57,13 @@ var todaysWeather = function (location) {
                     humidity.appendChild(pHum);
 
                     getUV(data.coord.lat, data.coord.lon)
+                    searchInput.value = ""
+
+                    today.classList.add("card-1")
                 })
             }
         })
 }
-
-// var lon = data.coord.lon
-// var lat = data.coord.lat
 
 var getUV = function (lat, lon) {
     var apiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&&appid=81054108cea086276c96966b6bf32e1c"
@@ -81,7 +83,8 @@ var getUV = function (lat, lon) {
                     } else {
                         btn.classList.add("btn-danger")
                     }
-                    btn.textContent = data.value
+                    btn.textContent = "UV: " + data.value
+                    btn.classList.add("uv")
                     uvIndex.appendChild(btn);
                 })
             }
@@ -100,11 +103,11 @@ var getForecast = function (location) {
                     console.log(data)
                     for (var i = 0; i < data.list.length; i++) {
                         if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-                            var card = "<div class=\"card col\"><div class\"card-title\">" + new Date(data.list[i].dt_txt).toLocaleDateString() + "</div>"
+                            var card = "<div class=\"card col card border-secondary text-info\"><div class\"card-title\">" + new Date(data.list[i].dt_txt).toLocaleDateString() + "</div>"
                                 + "<img src='http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
-                                + "<div>Temp: " + data.list[i].main.temp + " °F</div>"
-                                + "<div>Wind " + data.list[i].wind.speed + " MPH</div>"
-                                + "<div>Humidity " + data.list[i].main.humidity + "%</div></div>"
+                                + "<div>Temp: " + data.list[i].main.temp + " °F</div></br>"
+                                + "<div>Wind: " + data.list[i].wind.speed + " MPH</div></br>"
+                                + "<div>Humidity: " + data.list[i].main.humidity + "%</div></div>"
                             forecastCards.insertAdjacentHTML('beforeend', card)
                         }
                     }
@@ -122,9 +125,9 @@ searchButton.addEventListener("click", function (event) {
     forecastCards.innerHTML = ""
     cityToday.innerHTML = ""
 
+
     todaysWeather(searchInput.value)
     getForecast(searchInput.value)
-
 
 })
 
