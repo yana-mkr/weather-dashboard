@@ -87,7 +87,7 @@ var todaysWeather = function (location) {
 
 // gets the uv index and colors it
 var getUV = function (lat, lon) {
-    var apiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&&appid=81054108cea086276c96966b6bf32e1c"
+    var apiURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&&appid=81054108cea086276c96966b6bf32e1c"
     //console.log(lon, lat)
     fetch(apiURL)
         .then(function (response) {
