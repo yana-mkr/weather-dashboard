@@ -58,7 +58,7 @@ var todaysWeather = function (location) {
                     cityToday.appendChild(h2);
 
                     var img = document.createElement("img")
-                    img.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
+                    img.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
                     h2.appendChild(img)
 
                     var pTemp = document.createElement("p")
@@ -127,7 +127,7 @@ var getForecast = function (location) {
                     for (var i = 0; i < data.list.length; i++) {
                         if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
                             var card = "<div class=\"card col card border-secondary text-info\"><div class\"card-title\">" + new Date(data.list[i].dt_txt).toLocaleDateString() + "</div>"
-                                + "<img src='http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
+                                + "<img src='https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'" + "/>"
                                 + "<div>Temp: " + data.list[i].main.temp + " °F</div></br>"
                                 + "<div>Wind: " + data.list[i].wind.speed + " MPH</div></br>"
                                 + "<div>Humidity: " + data.list[i].main.humidity + "%</div></div>"
