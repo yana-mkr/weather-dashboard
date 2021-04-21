@@ -33,6 +33,7 @@ var todaysWeather = function (location) {
                         searchedCities.push(searchInput.value)
                         localStorage.setItem("searched", JSON.stringify(searchedCities))
                         makeList(searchInput.value);
+                        makeList.classList.add("searched")
                     }
 
                     var h2 = document.createElement("h2")
@@ -60,7 +61,9 @@ var todaysWeather = function (location) {
                     searchInput.value = ""
 
                     today.classList.add("card-1")
+
                 })
+
             }
         })
 }
@@ -101,6 +104,7 @@ var getForecast = function (location) {
                 // https://usefulangle.com/post/143/pure-javascript-append
                 response.json().then(function (data) {
                     console.log(data)
+                    forecastCards.innerHTML += "<div class='h4'>" + "5-Day Forecast:" + "</div>"
                     for (var i = 0; i < data.list.length; i++) {
                         if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
                             var card = "<div class=\"card col card border-secondary text-info\"><div class\"card-title\">" + new Date(data.list[i].dt_txt).toLocaleDateString() + "</div>"
