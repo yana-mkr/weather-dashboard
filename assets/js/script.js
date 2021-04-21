@@ -11,16 +11,31 @@ var searchedCities = JSON.parse(localStorage.getItem("searched")) || []
 var savedSearch = document.querySelector("#saved-search")
 var today = document.getElementById("today")
 
+// search history
 var makeList = function (searched) {
     var listItem = document.createElement("button")
     listItem.textContent = searched
     savedSearch.append(listItem)
-    listItem.setAttribute("class", "btn btn-secondary save")
+    listItem.setAttribute("class", "btn btn-secondary save button-save")
+
+    listItem.addEventListener("click",
+        function () {
+            todaysWeather(searched);
+            getForecast(searched)
+            temp.innerHTML = ""
+            wind.innerHTML = ""
+            humidity.innerHTML = ""
+            uvIndex.innerHTML = ""
+            forecastCards.innerHTML = ""
+            cityToday.innerHTML = ""
+        })
 }
+// loop for search history
 for (var i = 0; i < searchedCities.length; i++) {
     makeList(searchedCities[i])
 }
 
+// pulls top weather card for today 
 var todaysWeather = function (location) {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c&units=imperial"
 
@@ -30,16 +45,16 @@ var todaysWeather = function (location) {
                 //console.log(response);
                 response.json().then(function (data) {
 
-                    if (searchedCities.indexOf(searchInput.value) === -1) {
-                        searchedCities.push(searchInput.value)
+                    if (searchedCities.indexOf(location) === -1) {
+                        searchedCities.push(location)
                         localStorage.setItem("searched", JSON.stringify(searchedCities))
-                        makeList(searchInput.value);
+                        makeList(location);
                     }
 
                     var h2 = document.createElement("h2")
                     h2.textContent = searchInput.value + " " + new Date().toLocaleDateString()
-
                     cityToday.appendChild(h2);
+
                     var img = document.createElement("img")
                     img.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
                     h2.appendChild(img)
@@ -68,6 +83,7 @@ var todaysWeather = function (location) {
         })
 }
 
+// gets the uv index and colors it
 var getUV = function (lat, lon) {
     var apiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&&appid=81054108cea086276c96966b6bf32e1c"
     //console.log(lon, lat)
@@ -94,6 +110,7 @@ var getUV = function (lat, lon) {
         })
 }
 
+// dynamically creates 5 forecast cards
 var getForecast = function (location) {
     var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c&units=imperial"
 
@@ -128,8 +145,6 @@ searchButton.addEventListener("click", function (event) {
     uvIndex.innerHTML = ""
     forecastCards.innerHTML = ""
     cityToday.innerHTML = ""
-
-    listItem.addEventListener("click", todaysWeather, getForecast);
 
     todaysWeather(searchInput.value)
     getForecast(searchInput.value)

@@ -67,6 +67,7 @@ h3 {
     font-weight: 400px;
 }
 
+/* saved search buttons */
 .save {
     width: 100%;
     text-align: center;
@@ -74,6 +75,9 @@ h3 {
     border-radius: 5px;
 }
 
+.button-save {
+    outline: none;
+}
 /* todays weather */
 .card-1 {
     border: 2px solid #6c757d!important;
