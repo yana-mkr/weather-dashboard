@@ -12,9 +12,9 @@ header {
     padding: 5px;
     background-position: bottom;
     text-align: center;
-    
 }
 
+/* texts */
 h1 {
     color:#0dcaf0!important;
     text-shadow: ghostwhite 2px 3px 0px;
@@ -23,6 +23,16 @@ h1 {
     border-bottom: 2px solid #6c757d!important;
 }
 
+h3 {
+    color: #6c757d!important;
+}
+
+.h4 {
+    color: #6c757d!important;
+    margin-top: 40px;
+}
+
+/* Weather Cards */
 .card {
     margin-top: 10px;
     border: 1.5px solid #6c757d!important;
@@ -31,13 +41,19 @@ h1 {
     text-align: center;
 }
 
+/* Left column search */
 #search-button {
     margin-top: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     margin-bottom: 20px;
     width: 100%;
     color: white;
+    font-size: 18px;
+}
+
+.border {
+    border-top: 1px solid #6c757d!important;
 }
 
 #search-input {
@@ -50,11 +66,14 @@ h1 {
     font-weight: 400px;
 }
 
-#right-side {
-    margin-top: 30px;
-    margin-left: 20px;
+.save {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    border-radius: 5px;
 }
 
+/* todays weather */
 .card-1 {
     border: 2px solid #6c757d!important;
     border-radius: 25px;
@@ -64,24 +83,11 @@ h1 {
     padding-bottom: 40px;
 }
 
+#right-side {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
 .uv {
     padding: 2px;
-}
-
-h3 {
-    color: #6c757d!important;
-}
-
-.h4 {
-    color: #6c757d!important;
-    margin-top: 40px;
-}
-
-.searched {
-    width: 100%
-}
-
-.save {
-    border-bottom: 1px solid #6c757d!important;
-    width: 100%;
 }

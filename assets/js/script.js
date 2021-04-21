@@ -13,12 +13,13 @@ var today = document.getElementById("today")
 
 var makeList = function (searched) {
     var listItem = document.createElement("li")
-    listItem.setAttribute("class", "list-group-item list-group-item-action")
     listItem.textContent = searched
     savedSearch.append(listItem)
-
+    listItem.setAttribute("class", "list-group-item list-group-item-secondary save")
 }
-
+for (var i = 0; i < searchedCities.length; i++) {
+    makeList(searchedCities[i])
+}
 
 var todaysWeather = function (location) {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=81054108cea086276c96966b6bf32e1c&units=imperial"
@@ -33,7 +34,6 @@ var todaysWeather = function (location) {
                         searchedCities.push(searchInput.value)
                         localStorage.setItem("searched", JSON.stringify(searchedCities))
                         makeList(searchInput.value);
-                        makeList.classList.add("searched")
                     }
 
                     var h2 = document.createElement("h2")
@@ -70,11 +70,11 @@ var todaysWeather = function (location) {
 
 var getUV = function (lat, lon) {
     var apiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&&appid=81054108cea086276c96966b6bf32e1c"
-    console.log(lon, lat)
+    //console.log(lon, lat)
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
+                //console.log(response);
                 response.json().then(function (data) {
                     //console.log(data);
 
@@ -103,7 +103,7 @@ var getForecast = function (location) {
                 // console.log(response);
                 // https://usefulangle.com/post/143/pure-javascript-append
                 response.json().then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     forecastCards.innerHTML += "<div class='h4'>" + "5-Day Forecast:" + "</div>"
                     for (var i = 0; i < data.list.length; i++) {
                         if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
