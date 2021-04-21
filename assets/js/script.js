@@ -16,12 +16,14 @@ var makeList = function (searched) {
     var listItem = document.createElement("button")
     listItem.textContent = searched
     savedSearch.append(listItem)
-    listItem.setAttribute("class", "btn btn-secondary save button-save")
+    listItem.setAttribute("class", "btn btn-secondary save")
+
 
     listItem.addEventListener("click",
         function () {
             todaysWeather(searched);
             getForecast(searched)
+
             temp.innerHTML = ""
             wind.innerHTML = ""
             humidity.innerHTML = ""
@@ -52,7 +54,7 @@ var todaysWeather = function (location) {
                     }
 
                     var h2 = document.createElement("h2")
-                    h2.textContent = searchInput.value + " " + new Date().toLocaleDateString()
+                    h2.textContent = location + " " + new Date().toLocaleDateString()
                     cityToday.appendChild(h2);
 
                     var img = document.createElement("img")
