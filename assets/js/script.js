@@ -51,34 +51,34 @@ var todaysWeather = function (location) {
                         searchedCities.push(location)
                         localStorage.setItem("searched", JSON.stringify(searchedCities))
                         makeList(location);
-
-                        var h2 = document.createElement("h2")
-                        h2.textContent = location + " " + new Date().toLocaleDateString()
-                        cityToday.appendChild(h2);
-
-                        var img = document.createElement("img")
-                        img.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
-                        h2.appendChild(img)
-
-                        var pTemp = document.createElement("p")
-                        pTemp.textContent = "Temperature: " + data.main.temp + " °F"
-                        temp.appendChild(pTemp);
-
-                        var pWind = document.createElement("p")
-                        pWind.textContent = "Wind: " + data.wind.speed + " MPH"
-                        wind.appendChild(pWind);
-                        console.log(data);
-
-                        var pHum = document.createElement("p")
-                        pHum.textContent = "Humidity: " + data.main.humidity + "%"
-                        humidity.appendChild(pHum);
-
-                        getUV(data.coord.lat, data.coord.lon)
-                        searchInput.value = ""
-
-                        today.classList.add("card-1")
-
                     }
+
+                    var h2 = document.createElement("h2")
+                    h2.textContent = location + " " + new Date().toLocaleDateString()
+                    cityToday.appendChild(h2);
+
+                    var img = document.createElement("img")
+                    img.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
+                    h2.appendChild(img)
+
+                    var pTemp = document.createElement("p")
+                    pTemp.textContent = "Temperature: " + data.main.temp + " °F"
+                    temp.appendChild(pTemp);
+
+                    var pWind = document.createElement("p")
+                    pWind.textContent = "Wind: " + data.wind.speed + " MPH"
+                    wind.appendChild(pWind);
+                    console.log(data);
+
+                    var pHum = document.createElement("p")
+                    pHum.textContent = "Humidity: " + data.main.humidity + "%"
+                    humidity.appendChild(pHum);
+
+                    getUV(data.coord.lat, data.coord.lon)
+                    searchInput.value = ""
+
+                    today.classList.add("card-1")
+
                 })
             } else {
                 alert("Error: Location not found. Please enter a valid city name and try again.");
