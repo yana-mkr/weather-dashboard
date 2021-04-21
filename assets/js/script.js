@@ -12,10 +12,10 @@ var savedSearch = document.querySelector("#saved-search")
 var today = document.getElementById("today")
 
 var makeList = function (searched) {
-    var listItem = document.createElement("li")
+    var listItem = document.createElement("button")
     listItem.textContent = searched
     savedSearch.append(listItem)
-    listItem.setAttribute("class", "list-group-item list-group-item-secondary save")
+    listItem.setAttribute("class", "btn btn-secondary save")
 }
 for (var i = 0; i < searchedCities.length; i++) {
     makeList(searchedCities[i])
@@ -129,6 +129,7 @@ searchButton.addEventListener("click", function (event) {
     forecastCards.innerHTML = ""
     cityToday.innerHTML = ""
 
+    listItem.addEventListener("click", todaysWeather, getForecast);
 
     todaysWeather(searchInput.value)
     getForecast(searchInput.value)

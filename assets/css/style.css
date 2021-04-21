@@ -50,6 +50,7 @@ h3 {
     width: 100%;
     color: white;
     font-size: 18px;
+    outline: none;
 }
 
 .border {
